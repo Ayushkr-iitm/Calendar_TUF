@@ -2,6 +2,10 @@
 
 An interactive wall-calendar experience with a tactile page flip, date-range selection, and notes — built as a frontend engineering challenge project.
 
+## Run on browser:
+Note on Mobile phone, run it on desktop view: https://calendar-tuf-eta.vercel.app/
+
+
 ## Run locally
 
 ```bash
