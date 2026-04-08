@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f6feb"/>
+      <stop offset="1" stop-color="#ff6b4a"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="12" width="44" height="42" rx="10" fill="#0b0f19"/>
+  <rect x="14" y="16" width="36" height="34" rx="8" fill="#f6f2e8"/>
+  <rect x="14" y="16" width="36" height="10" rx="8" fill="url(#g)"/>
+  <!-- binding dots -->
+  <g fill="#0b0f19" opacity="0.85">
+    <circle cx="22" cy="20" r="1.2"/>
+    <circle cx="32" cy="20" r="1.2"/>
+    <circle cx="42" cy="20" r="1.2"/>
+  </g>
+  <!-- subtle grid -->
+  <g stroke="#0b0f19" stroke-opacity="0.10" stroke-width="1">
+    <path d="M18 32h28M18 38h28M18 44h28"/>
+    <path d="M24 28v22M32 28v22M40 28v22"/>
+  </g>
+  <!-- today dot -->
+  <circle cx="40" cy="38" r="3.2" fill="#ff5c7a"/>
+</svg>
+

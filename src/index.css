@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 8%;
+    --foreground: 40 20% 90%;
+
+    --card: 220 15% 12%;
+    --card-foreground: 40 20% 90%;
+
+    --popover: 220 15% 12%;
+    --popover-foreground: 40 20% 90%;
+
+    --primary: 35 80% 55%;
+    --primary-foreground: 220 20% 8%;
+
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 40 20% 85%;
+
+    --muted: 220 12% 16%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 35 60% 45%;
+    --accent-foreground: 40 20% 95%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 40 20% 95%;
+
+    --border: 220 12% 20%;
+    --input: 220 12% 20%;
+    --ring: 35 80% 55%;
+
+    --radius: 0.375rem;
+
+    --wall: 0 0% 92%;
+    --wall-light: 0 0% 97%;
+    --paper: 40 30% 95%;
+    --paper-foreground: 0 0% 8%;
+    --paper-shadow: 220 30% 10%;
+    --calendar-today: 35 80% 55%;
+    --calendar-selected: 210 70% 50%;
+    --calendar-range: 210 60% 85%;
+    --calendar-hover: 35 40% 88%;
+    --calendar-sunday: 0 65% 50%;
+
+    --spotlight-color: 35 25% 86%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .wall-texture {
+    background: 
+      radial-gradient(ellipse 72% 55% at 50% 26%, hsl(var(--spotlight-color) / 0.28) 0%, transparent 62%),
+      radial-gradient(ellipse 90% 70% at 50% 70%, hsl(0 0% 0% / 0.06) 0%, transparent 62%),
+      linear-gradient(180deg, hsl(var(--wall-light) / 1) 0%, hsl(var(--wall) / 1) 55%, hsl(var(--wall-light) / 1) 100%);
+    position: relative;
+  }
+
+  .wall-texture::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  }
+
+  .calendar-paper {
+    background: hsl(var(--paper));
+    color: hsl(var(--paper-foreground));
+    box-shadow:
+      0 10px 18px -6px hsl(var(--paper-shadow) / 0.22),
+      0 26px 55px -18px hsl(var(--paper-shadow) / 0.44),
+      0 55px 120px -40px hsl(var(--paper-shadow) / 0.55),
+      inset 0 1px 0 hsl(40 30% 98%);
+    position: relative;
+  }
+
+  .calendar-paper::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 10px;
+    pointer-events: none;
+    background: linear-gradient(180deg, hsl(0 0% 0% / 0.08), transparent);
+  }
+
+  .calendar-hook {
+    background: linear-gradient(135deg, hsl(30 10% 45%) 0%, hsl(30 8% 30%) 100%);
+    box-shadow: 0 2px 8px hsl(var(--paper-shadow) / 0.5);
+  }
+
+  .dust-particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: hsl(40 30% 70% / 0.3);
+    border-radius: 50%;
+    animation: float-dust linear infinite;
+  }
+
+  @keyframes float-dust {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    20% { opacity: 0.5; }
+    80% { opacity: 0.3; }
+    100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+  }
+
+  @keyframes gentle-swing {
+    0%, 100% { transform: rotate(-0.3deg); }
+    50% { transform: rotate(0.3deg); }
+  }
+
+  .calendar-swing {
+    animation: gentle-swing 6s ease-in-out infinite;
+    transform-origin: top center;
+  }
+}
