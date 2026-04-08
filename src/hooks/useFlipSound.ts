@@ -19,6 +19,7 @@ function createNoiseBuffer(ctx: AudioContext, seconds: number) {
 
 export function useFlipSound() {
   const stateRef = useRef<AudioState | null>(null);
+  const MASTER_GAIN = 2.0;
 
   const ensure = useCallback(() => {
     if (stateRef.current) return stateRef.current;
@@ -50,7 +51,7 @@ export function useFlipSound() {
         highpass.frequency.value = 500;
 
         const gain = ctx.createGain();
-        const base = 0.055 * intensity;
+        const base = 0.055 * intensity * MASTER_GAIN;
         gain.gain.setValueAtTime(0.0001, now);
         gain.gain.exponentialRampToValueAtTime(base, now + 0.015);
         gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
@@ -62,7 +63,10 @@ export function useFlipSound() {
         tick.frequency.exponentialRampToValueAtTime(240, now + 0.03);
         const tickGain = ctx.createGain();
         tickGain.gain.setValueAtTime(0.0001, now);
-        tickGain.gain.exponentialRampToValueAtTime(0.022 * intensity, now + 0.005);
+        tickGain.gain.exponentialRampToValueAtTime(
+          0.022 * intensity * MASTER_GAIN,
+          now + 0.005,
+        );
         tickGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
 
         src.connect(bandpass);
