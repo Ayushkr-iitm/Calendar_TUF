@@ -16,6 +16,14 @@ npm run dev
 
 Vite prints the local URL in the terminal (typically `http://localhost:8080`, or the next available port).
 
+## Audio note (exact flip sound)
+
+The month flip is wired to use an external recorded file named:
+
+- `public/sounds/page-flip-47177.mp3`
+
+If that file exists, it will be used. If it’s missing, the app falls back to a small synthesized “paper-ish” flip sound so the UI remains functional.
+
 ## What this is
 
 This project aims to feel like a real physical wall calendar:
@@ -29,7 +37,7 @@ This project aims to feel like a real physical wall calendar:
 
 ### Month navigation (page flip + sound)
 - Previous/Next month navigation with a page flip animation
-- A subtle paper flip sound (Web Audio) on each flip
+- A page flip sound on each flip
 
 ### Date range selection
 - Click a start date, then click an end date
@@ -72,7 +80,8 @@ The wall background subtly tints based on the current month’s hero image so ea
   - `useRangeSelection.ts`: range + hover preview logic
   - `useLocalStorageState.ts`: localStorage state helper
   - `useHeroTheme.ts`: derives theme variables from the hero image
-  - `useFlipSound.ts`: generates flip sound via Web Audio
+- `usePageFlipAudio.ts`: plays `page-flip-47177.mp3` with fallback audio
+- `useFlipSound.ts`: fallback synthesized flip via Web Audio
 
 ## Scripts
 - `npm run dev`: start dev server

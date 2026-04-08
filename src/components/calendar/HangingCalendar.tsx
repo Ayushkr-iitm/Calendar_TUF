@@ -9,9 +9,9 @@ import { useRangeSelection } from "@/hooks/useRangeSelection";
 import type { NotesStore } from "./NotesPanel";
 import { monthImages } from "@/lib/monthImages";
 import { useHeroTheme } from "@/hooks/useHeroTheme";
-import { useFlipSound } from "@/hooks/useFlipSound";
 import type React from "react";
 import { WallCanvas } from "./WallCanvas";
+import { usePageFlipAudio } from "@/hooks/usePageFlipAudio";
 
 export const HangingCalendar = () => {
   const now = new Date();
@@ -33,7 +33,7 @@ export const HangingCalendar = () => {
   });
 
   const { vars: roomVars } = useHeroTheme(monthImages[month]!);
-  const flipSound = useFlipSound();
+  const flipSound = usePageFlipAudio();
 
   const goNext = useCallback(() => {
     flipSound.play(1);
@@ -168,11 +168,11 @@ export const HangingCalendar = () => {
                 exit="exit"
                 variants={{
                   enter: (d: number) => ({
-                    rotateX: d > 0 ? -110 : 110,
-                    rotateZ: d > 0 ? 0.7 : -0.7,
-                    y: d > 0 ? 10 : -10,
+                    rotateX: d > 0 ? -98 : 98,
+                    rotateZ: d > 0 ? 1.2 : -1.2,
+                    y: d > 0 ? 18 : -18,
                     opacity: 0,
-                    scale: 0.92,
+                    scale: 0.935,
                     z: -150,
                     filter: 'brightness(0.5)',
                     transformOrigin: d > 0 ? 'bottom center' : 'top center',
@@ -188,20 +188,20 @@ export const HangingCalendar = () => {
                     transformOrigin: 'top center',
                   },
                   exit: (d: number) => ({
-                    rotateX: d > 0 ? 110 : -110,
-                    rotateZ: d > 0 ? -0.6 : 0.6,
-                    y: d > 0 ? -12 : 12,
+                    rotateX: d > 0 ? 102 : -102,
+                    rotateZ: d > 0 ? -1.0 : 1.0,
+                    y: d > 0 ? -22 : 22,
                     opacity: 0,
-                    scale: 0.92,
+                    scale: 0.93,
                     z: -150,
                     filter: 'brightness(0.3)',
                     transformOrigin: d > 0 ? 'top center' : 'bottom center',
                   }),
                 }}
                 transition={{
-                  duration: 1.15,
-                  ease: [0.15, 1, 0.25, 1],
-                  opacity: { duration: 0.55 },
+                  duration: 1.7,
+                  ease: [0.12, 0.92, 0.18, 1],
+                  opacity: { duration: 0.7 },
                 }}
                 style={{
                   transformStyle: 'preserve-3d',
